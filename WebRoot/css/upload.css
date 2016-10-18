@@ -1,0 +1,138 @@
+/* CSS Document */
+
+
+body *{
+
+	margin:0 auto;
+	padding:0px;
+	font-family:Tahoma;
+	font-family:Arial, Hel,Microsoft YaHei;
+}
+#CategorySelector{
+	clear:both;
+	width:778px;
+	height:220px;
+	background-color:#FFF;
+	margin-bottom:8px;
+	font-size:14px;
+}
+#CategorySelector ul{
+	margin:0 3px 0 0;
+	padding:0;
+	border:1px solid #CCC;
+	float:left;
+	width:189px;
+	height:400px;
+	overflow:auto;
+}
+#CategorySelector ul.Blank{
+	background-color:#F6F6F6;
+}
+#CategorySelector li{
+	list-style-type:none;
+	width:auto;
+	height:25px;
+	
+	padding:10px;
+	border:1px solid #FFF;
+	line-height:20px;
+	color:#444;
+	text-indent:3px;
+	cursor:default;
+	text-align:center;
+	
+}
+#CategorySelector li.Selected{
+	background-color:#FAA07D;
+	<!--border:1px solid #0A9800;
+	color:#FFFFFF;
+}
+#CategorySelector li.IsParent{
+	background-image:url(../images/publishitem_subcate_arrow.gif);
+	background-position:99% 50%;
+	background-repeat:no-repeat;
+}
+#CategorySelector li.RecentUsed{
+	color:#170;
+}
+#CategoryTitle{
+	clear:both;
+	width:778px;
+	background-color:#FFF;
+	margin-top:20px;
+	font-size:16px;
+	text-align:center;
+}
+#CategoryTitle ul{
+	float:left;
+}
+#CategoryTitle li{
+	margin:0 3px 0 0;
+	float:left;
+    border:1px solid #999999;
+	width:189px;
+	color:#FFFFFF;
+	background-color:#999999;
+	font-weight:bold;
+	border-bottom:0px;
+	height:25px;
+	line-height:23px;
+}
+
+.step { 
+width:90%;
+font-size:18px;
+text-align:center;
+margin-top:20px;
+color:#333333;
+}
+
+.current {width:33%; background-color:#FFF2E6; display:inline-block; color:#FF6600;}
+.not_current {width:33%; display:inline-block; background-color:#EEEEEE; color:#FFFFFF;}
+
+
+.but{ width:90%;margin-top:200px; text-align:center;}
+.button{width:100px; height:31px;border-radius:3px 3px 3px 3px; border:1px solid #666666; background-color:#666666; cursor:pointer;font-size:12px;color:#f3f3f3; } 
+.button:hover{background:#999999; border:#999999;}
+
+
+<!--上传图片
+
+a{text-decoration:none;} 
+.btn_addPic{ 
+display: block; 
+position: relative; 
+width: 140px; 
+height: 39px; 
+overflow: hidden; 
+border: 1px solid #EBEBEB; 
+background: none repeat scroll 0 0 #F3F3F3; 
+color: #999999; 
+cursor: pointer; 
+text-align: center; 
+} 
+.btn_addPic span{display: block;line-height: 39px;} 
+.btn_addPic em { 
+background:url(add.png) 0 0; 
+display: inline-block; 
+width: 18px; 
+height: 18px; 
+overflow: hidden; 
+margin: 10px 5px 10px 0; 
+line-height: 20em; 
+vertical-align: middle; 
+} 
+.btn_addPic:hover em{background-position:-19px 0;} 
+.filePrew { 
+display: block; 
+position: absolute; 
+top: 0; 
+left: 0; 
+width: 140px; 
+height: 39px; 
+font-size: 100px; /* 增大不同浏览器的可点击区域 */ 
+opacity: 0; /* 实现的关键点 */ 
+filter:alpha(opacity=0);/* 兼容IE */ 
+} 
+
+.file{margin-top:20px;}

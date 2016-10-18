@@ -1,0 +1,23 @@
+@CHARSET "UTF-8"; 
+.returnTop{
+    position:fixed;
+    bottom:80px;
+    right:0;
+    display:none;
+}
+ 
+.img{
+	width:200px;
+    height:200px;	 
+}
+
+#ads{width:95%}
+
+
+
+#ads tr{height:100px;}
+#ads td{
+	margin-left:2.5%;
+	margin-right:2.5%;
+	margin:10px 10px 10px 10px;
+}
