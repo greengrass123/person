@@ -1,11 +1,11 @@
 <%@ page pageEncoding="utf-8" %>
-<%@ page contentType="text/html; charset=UTF-8" language="java" import="java.sql.*"%> 
+<%@ page contentType="text/html;utf-8" language="java" import="java.sql.*"%> 
 <jsp:include page="top.jsp" flush="true" />
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/"; 
 String unitTypeName=request.getParameter("unitTypeName");
-///unitTypeName=new String(unitTypeName.getBytes("iso-8859-1"),"utf-8");
+unitTypeName=new String(unitTypeName.getBytes("iso-8859-1"),"utf-8");
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
@@ -29,7 +29,7 @@ String unitTypeName=request.getParameter("unitTypeName");
   
   <body>
 
-	当前类别为：<%=unitTypeName %><br/>
+	当前类别为：<%=unitTypeName  %><br/>
 	<!-- 如果有包含搜索字段的单位或粘贴栏则循环 -->
 	 
 <!-- 	 console.log(unitsAndPosts.size() ); -->
