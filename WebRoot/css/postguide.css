@@ -1,0 +1,16 @@
+/* CSS Document */
+
+body{font-size:14px;font-family:Tahoma;font-family:Arial, Hel,Microsoft YaHei;}
+
+table{width:60%;}
+
+hr{width:60%;}
+
+td{text-align:left;}
+
+.post_title{margin-top:50px; color:#FFAA8C; font-size:25px;}
+
+
+
+a{text-decoration:none;color:#3C3C3C; font-size:16px;} 
+a:hover{color:#FF9900;}

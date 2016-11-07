@@ -1,0 +1,21 @@
+/* CSS Document */
+
+body{font-size:14px;font-family:Tahoma;font-family:Arial, Hel,Microsoft YaHei;}
+
+
+hr{width:60%;}
+
+tr{text-align:left;}
+
+.post_title{ margin-top:30px; color:#FFAA8C; font-size:25px; width:60%;}
+
+
+
+.unit_post a{text-decoration:none;color:#3C3C3C; font-size:16px;} 
+.unit_post a:hover{color:#FF9900;}
+
+.post_title{margin-left:20%;}
+.post{width:60%; margin-left:20%;}
+.post a{width:auto; margin-right:20px;}
+
+.post_info {margin-left:20%;}
