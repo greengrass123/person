@@ -221,12 +221,15 @@ public class FunctionsForPostLogical {
 			//返回指定ID下所有图片 	
 			if(post.getUserId()>0){//如果是专栏
 				pics=searchFromDB.picsOfPrivateAd(adId);
+				String sql="update privatead set click=click+1 where adId="+ adId;
+				searchFromDB.updateClick(sql);
 			}
 			//System.out.println("ad:"+adId);
 			//如果不是专栏	
 			else{
 				pics=searchFromDB.picsOfAd(adId);
-	 			
+				String sql="update ad set click=click+1 where adId="+ adId;
+                searchFromDB.updateClick(sql);
 			}
 			request.setAttribute("pics",pics);
  			//System.out.println("pics.size():"+pics.size());
@@ -340,8 +343,8 @@ public class FunctionsForPostLogical {
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		// 创建解析类的实例
 		ServletFileUpload sfu = new ServletFileUpload(factory);
-		long fileMax = 1024 * 1024 * 2; // 设置单个上传文件的最大限度，byte为单位,2M
-		long filesMax = 1024 * 1024 * 20;// 设置总上传文件的最大限度，10M
+		long fileMax = 1024 * 1024 * 8; // 设置单个上传文件的最大限度，byte为单位,2M
+		long filesMax = 1024 * 1024 * 40;// 设置总上传文件的最大限度，10M
 		//sfu.setFileSizeMax(fileMax);
 		//sfu.setSizeMax(filesMax);
 		List<FileItem> fileItems = new ArrayList<FileItem>();// 接收文件域
@@ -454,8 +457,8 @@ public class FunctionsForPostLogical {
 			 */
 			String compressPath= request.getSession().getServletContext().getRealPath("/firstPics").replace("/", "\\");//首图压缩后存放路径
 			String path = request.getSession().getServletContext().getRealPath("/photoes").replace("/", "\\");//图片存储路径
-			//System.out.println("/photoes所在真实路径path:" + path);	
-			//System.out.println("/firstPics所在真实路径compressPath:"+compressPath);
+			System.out.println("/photoes所在真实路径path:" + path);	
+			System.out.println("/firstPics所在真实路径compressPath:"+compressPath);
 			File photoesDir = new File(path);
 			File compressDir = new File(compressPath);
 			if (!photoesDir.exists()) {//如果不存在此路径则创建
@@ -511,7 +514,7 @@ public class FunctionsForPostLogical {
 				adId=searchAboutPost.maxPrivateAdId()+ 1;// 广告id为当前最大id+1
 				PrivateAd ad = new PrivateAd(adId, adTypeId, upLoadTime,
 						userId,Integer.parseInt(postIds[0]), firstPicAddr, money, sortValue, remark,
-						250, 250);
+						250, 250,1,0);
 				searchAboutPost.savePrivateAd(ad);
 				System.out.println("存储专栏广告");
 			} 
@@ -521,7 +524,7 @@ public class FunctionsForPostLogical {
 					int id=adId+i;//当前广告的id
 					Ad ad = new Ad(id, adTypeId, upLoadTime, userId, Integer.parseInt(postIds[i]),
 							firstPicAddr, money, sortValue, checked, remark, 250,
-							250);
+							250,1,0);
 					searchAboutPost.saveAd(ad);					 
 				}				
 			}

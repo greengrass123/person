@@ -30,7 +30,23 @@ $(function() {
             }
         }
     });
-
+   
+    $(".adminManager_table_radio_button").click(function(){
+       
+        var Audit=  $(
+        '.adminManager_table_td input[name="audit"]:checked')
+        .val();
+        
+        if (Audit== null) {
+            alert("单选框未选中");
+        } else {
+            //alert("提交表单");
+            document.getElementById('form1').submit();
+        }
+    });
+  
+    
+    
     $(".adminManager_table_a_delete").click(function() {
         if (confirm("Are you sure?")) {
 
@@ -38,6 +54,8 @@ $(function() {
             var auditChoice=$(".adminManager_table_audit_input_checkbox");
             var noAuditAdidArray = $(".adminManager_table_noaudit_hidden_Adid");
             var auditAdidArray = $(".adminManager_table_audit_hidden_Adid");
+          
+           
             var ADCheckedID = new Array();
             if(noAuditChoice.length!=0){         
                 for ( var i = 0; i < noAuditChoice.length; i++) {
@@ -57,14 +75,30 @@ $(function() {
             }
            
             var jsonADCheckedID = JSON.stringify(ADCheckedID);
-            $.ajax({
-                type:"get",
-                url : "AdminManagerLogical?info=delBatchInfo&jsonADCheckedID="
-                    +jsonADCheckedID,
-                 success:function(data){
-                     alert("成功");
-                 },
-            });
+            var   Audit= $(".indirect_audit").val();
+            if(Audit=="已审核"){
+              
+                $.ajax({
+                    type:"get",
+                    url : "AdminManagerLogical?info=delAuditBatchInfo&jsonADCheckedID="
+                        +jsonADCheckedID,
+                     success:function(data){
+                         alert("成功");
+                     },
+                });
+            }
+            if(Audit=="未审核"){
+                
+                $.ajax({
+                    type:"get",
+                    url : "AdminManagerLogical?info=delBatchInfo&jsonADCheckedID="
+                        +jsonADCheckedID,
+                     success:function(data){
+                         alert("成功");
+                     },
+                });
+            }
+           
 
         } else {
             return false;

@@ -120,7 +120,7 @@ public class ChangeResultSetToArray {
 		try {
 			while (result.next()) { 				 
 				Ad ad = new Ad(result.getInt(1), result.getInt(2),
-						result.getString(3), result.getInt(4),result.getInt(5), result.getString(6),result.getInt(7),result.getLong(8),result.getInt(9),result.getString(10),result.getInt(11),result.getInt(12));//通过审核的广告checked属性必为1
+						result.getString(3), result.getInt(4),result.getInt(5), result.getString(6),result.getInt(7),result.getLong(8),result.getInt(9),result.getString(10),result.getInt(11),result.getInt(12),result.getInt(13),result.getInt(14));//通过审核的广告checked属性必为1
 				//System.out.println(ad.getAdId());
 				ads.add(ad);
 			}
@@ -140,7 +140,7 @@ public class ChangeResultSetToArray {
 						result.getInt(5), result.getString(6),
 						result.getInt(7), result.getLong(8),
 						result.getString(9), result.getInt(10),
-						result.getInt(11));// 通过审核的广告checked属性必为1
+						result.getInt(11),result.getInt(12),result.getInt(13));// 通过审核的广告checked属性必为1
 				// System.out.println(ad.getAdId());
 				ads.add(ad);
 			}

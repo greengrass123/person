@@ -60,7 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   <div class="nav">
     <ul  id="top">
-        <li class="cur"><a href="index.jsp" target="_blank">首页</a></li>          
+        <li class="cur"><a href="index.jsp">首页</a></li>          
         <!--用session里面的user属性，记录当前用户信息。 如果为空则表示没登录，显示登录一栏，如果登陆了就显示某某用户，
                      并在鼠标移动到该用户名下时显示：退出、修改信息、我的关注三个条目,有专栏的用户同时显示我的专栏-->
 		<c:if test="${sessionScope.user!=null}">
@@ -68,24 +68,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div id='userRoot' style='display:none;'>
 					<!-- 如果有专栏，即userType>0，则显示我的专栏选项 -->
 					<c:if test="${sessionScope.user.userType>0}">
-						<p><a href='UserLogical?functionName=privatePost&adTypeId=0' target='_blank'>我的专栏</a></p>
+						<p><a href='UserLogical?functionName=privatePost&adTypeId=0' >我的专栏</a></p>
 					</c:if>
-					<p><a href='UserLogical?functionName=myAttentions' target='_blank'>我的关注</a></p>
-					<p><a href='UserLogical?functionName=myAds' target='_blank'>已发布广告</a></p>
-					<p><a href='alterUserInformation.jsp' target='_blank'>修改信息</a></p>	
+					<p><a href='UserLogical?functionName=myAttentions' >我的关注</a></p>
+					<p><a href='UserLogical?functionName=myAds' >已发布广告</a></p>
+					<p><a href='alterUserInformation.jsp'>修改信息</a></p>	
 					<p><a href='UserLogical?functionName=exit'>退出</a></p>					
 				</div>	
 			</li>
 		</c:if>    
 		<c:if test="${sessionScope.user==null}"><!-- 没有登陆则上传跳转到未登录用户的上传页面 -->
-			<li id='login'><a href='login.jsp' target='_blank'>登录</a></li>	<!-- 未登录用户显示登陆 -->		  
-			<li><a href="register.jsp" target='_blank'>注册</a></li><!-- 未登录用户显示注册 -->			
+			<li id='login'><a href='login.jsp' >登录</a></li>	<!-- 未登录用户显示登陆 -->		  
+			<li><a href="register.jsp" >注册</a></li><!-- 未登录用户显示注册 -->			
 		</c:if>
 		<c:if test='${null==sessionScope.user||sessionScope.user.userType<=0 }'><!-- 非专栏用户上传广告 -->
-			<li><a href="upLoad1.jsp" target='_blank'>上传广告</a></li> 
+			<li><a href="upLoad1.jsp" >上传广告</a></li> 
 		</c:if>
 		<c:if test='${sessionScope.user.userType>0 }'><!-- 专栏用户上传广告 -->
-			<li><a href="privateUpLoad.jsp" target='_blank'>上传广告</a></li> 
+			<li><a href="privateUpLoad.jsp" >上传广告</a></li> 
 		</c:if>	    	
     </ul> 
     <div class="curBg"></div>

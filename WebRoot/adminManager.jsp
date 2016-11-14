@@ -6,11 +6,15 @@
 <jsp:directive.page import="jdbc.OperationData" />
 <jsp:directive.page import="allClasses.*" />
 <%
-    String path = request.getContextPath();
+String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 
 List noauditlist=(List)request.getAttribute("noauditlist");
 List auditlist=(List)request.getAttribute("auditlist");
+
+
+   Object  audit=request.getAttribute("audit");
+    System.out.print("audit"+audit);
 
 
 //获取信息类别
@@ -59,7 +63,7 @@ List auditlist=(List)request.getAttribute("auditlist");
 
                             if (formObj[i].checked) {
                                 str = formObj[i].value;
-                                //  alert(str);            
+                               
                             }
                         }
                         if (str == "checked") {
@@ -89,7 +93,11 @@ List auditlist=(List)request.getAttribute("auditlist");
                      }               
                      */
                 </script>
-
+   
+   <c:if test="${audit!=null }">
+   <input type="hidden" value="<%=audit%>" class="indirect_audit"/>
+   </c:if>
+   
     <form action="AdminManagerLogical?info=auditInfo" method="post"
         id="form1" name="formName"
     >
@@ -97,15 +105,17 @@ List auditlist=(List)request.getAttribute("auditlist");
 
             <tr>
                 <td align="center" class="adminManager_table_td"><input
-                    type="radio" value="未审核" name="audit"
+                    type="radio" value="未审核" name="audit" 
+                    class="adminManager_table_td_noaudit"
                 />未审核 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
                     type="radio" value="已审核" name="audit"
+                    class="adminManager_table_td_audit"
                 />已审核</td>
                 <td><select name="adType" id="adType">
                         <%
                             for(int i=0;i<adList.size();i++)
-                                                                                                     {
-                                                                                           						AdType type=(AdType)adList.get(i);
+                                                                                                                     {
+                                                                                                           						AdType type=(AdType)adList.get(i);
                         %>
                         <option value="<%=type.getAdTypeName()%>"><%=type.getAdTypeName()%></option>
 
@@ -118,8 +128,8 @@ List auditlist=(List)request.getAttribute("auditlist");
                         <option value="所有粘贴栏">所有粘贴栏</option>
                         <%
                             for(int i=0;i<postList.size();i++)
-                                                                                          	 {
-                                                                                          	    String postName=postList.get(i);
+                                                                                                          	 {
+                                                                                                          	    String postName=postList.get(i);
                         %>
                         <option value="<%=postName%>">
                             <%=postName%>
@@ -135,8 +145,8 @@ List auditlist=(List)request.getAttribute("auditlist");
                         <option value="近一个月">近一个月</option>
                         <option value="近三个月">近三个月</option>
                 </select></td>
-                <td><input type="button" value="展示"
-                    onclick=" check(document.formName.audit);"
+                <td><input type="button" value="展示" class="adminManager_table_radio_button"
+                  
                 /> &nbsp;</td>
                 <td>全选<input type="radio" name="adminManager_radio"
                     class="adminManager_table_radio_allChoice"
@@ -144,16 +154,16 @@ List auditlist=(List)request.getAttribute("auditlist");
                     class="adminManager_table_radio_inverseChoice"
                 /></td>
                 <td><a href="javascript:void(0)"
-                    class="adminManager_table_a_delete"
+                    class="adminManager_table_a_delete"                  
                 >批量删除</a></td>
                 <td><a href="javascript:void(0)"
-                    class="adminManager_table_a_insert"
+                    class="adminManager_table_a_insert"             
                 >批量审核</a></td>
                 <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
-               
+
                 <td><lable>定时删除开关</lable></td>
-                <td ><label ><input
-                        class="adminManager_table_mui-switch mui-switch-animbg" 
+                <td><label><input
+                        class="adminManager_table_mui-switch mui-switch-animbg"
                         type="checkbox"
                     ></label></td>
             </tr>
@@ -166,8 +176,7 @@ List auditlist=(List)request.getAttribute("auditlist");
 
 
             <tr>
-                <br>
-                <br>
+                <br> <br>
             </tr>
         </table>
     </form>
@@ -180,8 +189,8 @@ List auditlist=(List)request.getAttribute("auditlist");
                         <c:if test="${noauditlist!=null }">
                             <%
                                 for(int i=0;i<noauditlist.size();i++)
-                                                                                                                      {
-                                                                                                                      	Pic p=(Pic)noauditlist.get(i);
+                                                                                                                                          {
+                                                                                                                                          	Pic p=(Pic)noauditlist.get(i);
                             %>
                             <li><img src="<%=p.getPicAddr()%>"
                                 width="200" height="200"
@@ -205,8 +214,8 @@ List auditlist=(List)request.getAttribute("auditlist");
                         <c:if test="${auditlist!=null }">
                             <%
                                 for(int i=0;i<auditlist.size();i++)
-                                                                                                                      {
-                                                                                                                      	Pic p=(Pic)auditlist.get(i);
+                                                                                                                                          {
+                                                                                                                                          	Pic p=(Pic)auditlist.get(i);
                             %>
                             <li><img src="<%=p.getPicAddr()%>"
                                 width="200" height="200"

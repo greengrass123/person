@@ -119,7 +119,7 @@ public class SearchAboutPost {
 		// System.out.println("执行src/jdbc/SearchFromDB/adsOfPost(),传入的postId为："+postId);
 		ConnectDB connect = new ConnectDB();
 		//返回通过审核的广告并且按时间排序
-		String sql = "select * from ad where postId='" + postId+"' and checked=1 order by sortValue DESC limit "+m+","+n;		 
+		String sql = "select * from ad where exist=1 and postId='" + postId+"' and checked=1 order by sortValue DESC limit "+m+","+n;		 
 		ResultSet result = connect.executeQuery(sql);
 		List<Ad> ads = changeResultSetToArray.adsArray(result);
 		connect.close();
@@ -133,7 +133,7 @@ public class SearchAboutPost {
 		if(adTypeId>0){
 			ConnectDB connect = new ConnectDB();
 			//返回通过审核的广告并且按时间排序
-		 	String sql = "select * from ad where postId='" + postId+"' and adTypeId='"+adTypeId+"'and checked=1 order by sortValue  DESC limit "+m+","+n;
+		 	String sql = "select * from ad where exist=1 and postId='" + postId+"' and adTypeId='"+adTypeId+"'and checked=1 order by sortValue  DESC limit "+m+","+n;
 			ResultSet result = connect.executeQuery(sql);
 			System.out.println("result:"+result);
 			List<Ad> ads = changeResultSetToArray.adsArray(result);
@@ -153,7 +153,7 @@ public class SearchAboutPost {
 
 		ConnectDB connect = new ConnectDB();
 		// 返回通过审核的广告并且按时间排序
-		String sql = "select * from pic where adId='" + adId
+		String sql = "select * from pic where  pic.adId in(select ad.adId from ad where exist=1) and pic.adId='" + adId
 				+ "'and checked=1 ";
 		ResultSet result = connect.executeQuery(sql);
 		// System.out.println("result:" + result);
@@ -163,7 +163,11 @@ public class SearchAboutPost {
 		return pics;
 
 	}
-
+	public void updateClick(String sql ){
+	    ConnectDB connectDB=new ConnectDB();
+	    boolean flag=connectDB.executeUpdate(sql);
+	    connectDB.close();
+	}
 	 
 		
 	// 查找指定专栏下第m~n条广告
@@ -171,7 +175,7 @@ public class SearchAboutPost {
 		// System.out.println("执行src/jdbc/SearchFromDB/adsOfPost(),传入的postId为："+postId);
 		ConnectDB connect = new ConnectDB();
 		//返回通过审核的广告并且按时间排序
-		String sql = "select * from privateAd where postId='" + postId+"' order by sortValue DESC limit "+m+","+n;		 
+		String sql = "select * from privateAd where exist=1and postId='" + postId+"' order by sortValue DESC limit "+m+","+n;		 
 		ResultSet result = connect.executeQuery(sql);
 		List<PrivateAd> ads = changeResultSetToArray.privateAdsArray(result);
 		connect.close();
@@ -185,7 +189,7 @@ public class SearchAboutPost {
 		if(adTypeId>0){
 			ConnectDB connect = new ConnectDB();
 			//返回通过审核的广告并且按时间排序
-		 	String sql = "select * from privateAd where postId='" + postId+"' and adTypeId='"+adTypeId+"' order by sortValue  DESC limit "+m+","+n;
+		 	String sql = "select * from privateAd where  exist=1and postId='" + postId+"' and adTypeId='"+adTypeId+"' order by sortValue  DESC limit "+m+","+n;
 			ResultSet result = connect.executeQuery(sql);
 			System.out.println("result:"+result);
 			List<PrivateAd> ads = changeResultSetToArray.privateAdsArray(result);
@@ -205,7 +209,7 @@ public class SearchAboutPost {
 
 		ConnectDB connect = new ConnectDB();
 		// 返回通过审核的广告并且按时间排序
-		String sql = "select * from privatePic where adId='" + adId
+		String sql = "select * from privatePic where  privatePic.adId in(select privatead.adId from ad where exist=1) and privatePic.adId='" + adId
 				+ "'";
 		ResultSet result = connect.executeQuery(sql);
 		// System.out.println("result:" + result);
@@ -319,7 +323,7 @@ public class SearchAboutPost {
     //返回当前的最大广告id
     public int maxAdId(){
     	ConnectDB connect = new ConnectDB(); 
-    	String sql="select max(adId) from ad ";
+    	String sql="select max(adId) from ad where exist=1 ";
     	ResultSet result=connect.executeQuery(sql);
     	int maxAdId=0;
     	try {
@@ -336,7 +340,7 @@ public class SearchAboutPost {
     //返回当前的最大专帖栏广告id
     public int maxPrivateAdId(){
     	ConnectDB connect = new ConnectDB(); 
-    	String sql="select max(adId) from privateAd ";
+    	String sql="select max(adId) from privateAd where exist=1 ";
     	ResultSet result=connect.executeQuery(sql);
     	int maxAdId=0;
     	try {

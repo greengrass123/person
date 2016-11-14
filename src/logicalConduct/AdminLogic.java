@@ -56,7 +56,7 @@ public class AdminLogic {
     public List getAuditInfo(int checked) {
         List list = new ArrayList();
         Pic p;
-        sql = "select *from pic where checked='" + checked + "'";
+        sql = "select *from pic where pic.adId in(select ad.adId from ad where exist=1) and checked='" + checked + "'";
         connection = new ConnectDB();
         ResultSet rs = connection.executeQuery(sql);
 
@@ -152,7 +152,14 @@ public class AdminLogic {
         connection.close();
 
     }
-
+    //通过改变ad的状态，来代表删除
+    public void newDel_pic_ad(int adId){
+        connection=new ConnectDB();
+        sql="update ad set exist=0 where adId="+adId;
+        connection.executeUpdate(sql);
+        connection.close();
+    }
+    
     public void delBatch_pic_ad(List<Integer> AdList) {
         connection = new ConnectDB();
         sql = "delete from pic where adId=?";
@@ -162,7 +169,13 @@ public class AdminLogic {
         flag = connection.executeBatch(sql, listTransformationInt(AdList));
         connection.close();
     }
-
+    
+    public void newDelBatch_pic_ad(List<Integer> AdList){
+        connection=new ConnectDB();
+        sql="update ad set exist=0 where adId=?";
+        boolean flag=connection.executeBatch(sql, listTransformationInt(AdList));
+        connection.close();
+    }
     // 看用户名是否在在数据库中存在，存在返回false,不存在返回true
     public boolean isRepeat(String userName) {
 

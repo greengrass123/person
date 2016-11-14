@@ -120,7 +120,7 @@ function changeType(){
 	<c:if test="${null!=param.adTypeId&&null!=param.postId}">
 		
 		上传广告到：<%=postName%> 所选类别：<%=adTypeName%>
-		<div class="but">
+		<div class="but1">
 			<input tabIndex=3 id='addButton' type='button' class="button" value='添加图片'>
 			&nbsp;&nbsp;&nbsp;
 			<input tabIndex=3 type='button' size=3 name=pic value='清除所有图片' class="button" onclick='deleteAll()'>
@@ -137,6 +137,9 @@ function changeType(){
 				<!-- 图片上传类别、粘贴栏、时间信息 -->
 			<input type='text' value='${param.adTypeId}' name='adTypeId' id='adTypeId' style='display:none'> 
 			<input type='text' value='${param.postId}' name='postId' id='postId' style='display:none'>		 
+            <div class='but'>
+            <input type="submit" value="完成" class="button">
+            </div>
 		 	<c:set var='adTypeName' value='<%=postName%>'></c:set>	 	
 		 	<!-- 如果是上传广告到自己的专栏，则多传一个字段privatePost，从而区分专栏广告与公共粘贴栏广告 -->
 			<c:if test='${adTypeName=="您的专栏"}'>
@@ -149,9 +152,7 @@ function changeType(){
 					</table>
 				</fieldset>
 			</div>
-			<div class='but'>
-			<input type="submit" value="完成" class="button">
-			</div>
+			
 						
 		</form>
 	</c:if>

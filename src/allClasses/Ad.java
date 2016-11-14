@@ -13,27 +13,32 @@ public class Ad {
 	private String remark;
 	private int height;
 	private int width;
-
-	public Ad() {
+	private int click;
+	private int exist;
+	public Ad(int adId, int adTypeId, String upLoadTime, int userId,
+            int postId, String firstPicAddr, int money, long sortValue,
+            int checked, String remark, int height, int width, int click,
+            int exist) {
+        super();
+        this.adId = adId;
+        this.adTypeId = adTypeId;
+        this.upLoadTime = upLoadTime;
+        this.userId = userId;
+        this.postId = postId;
+        this.firstPicAddr = firstPicAddr;
+        this.money = money;
+        this.sortValue = sortValue;
+        this.checked = checked;
+        this.remark = remark;
+        this.height = height;
+        this.width = width;
+        this.click = click;
+        this.exist = exist;
+    }
+    public Ad() {
 		super();
 	}	
-	public Ad(int adId, int adTypeId, String upLoadTime, int userId,
-			int postId, String firstPicAddr, int money, long sortValue,
-			int checked, String remark, int height, int width) {
-		super();
-		this.adId = adId;
-		this.adTypeId = adTypeId;
-		this.upLoadTime = upLoadTime;
-		this.userId = userId;
-		this.postId = postId;
-		this.firstPicAddr = firstPicAddr;
-		this.money = money;
-		this.sortValue = sortValue;
-		this.checked = checked;
-		this.remark = remark;
-		this.height = height;
-		this.width = width;
-	}
+	
 
 	public String getRemark() {
 		return remark;
@@ -113,6 +118,18 @@ public class Ad {
 	public void setChecked(int checked) {
 		this.checked = checked;
 	}
+    public int getClick() {
+        return click;
+    }
+    public void setClick(int click) {
+        this.click = click;
+    }
+    public int getExist() {
+        return exist;
+    }
+    public void setExist(int exist) {
+        this.exist = exist;
+    }
 	
 	
 }

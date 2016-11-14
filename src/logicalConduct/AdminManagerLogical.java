@@ -104,6 +104,8 @@ public class AdminManagerLogical extends HttpServlet {
             this.batchAuditBy(request, response);
         } else if (info.equals(" TimingProcess")) {
             this.TimingProcess(request, response);
+        }else if (info.equals("delAuditBatchInfo")) {
+            this.delAuditBatchInfo(request, response);
         }
 
     }
@@ -187,6 +189,7 @@ public class AdminManagerLogical extends HttpServlet {
         System.out.println("执行aduitInfo，要显示的图片状态为：" + audit);
         OperationData od = new OperationData();
         if (audit.equals("未审核")) {
+          
             state = 0;
             noauditlistOriginal = data.getAuditInfo(state);
             if (adType.equals("所有广告")) {
@@ -221,6 +224,7 @@ public class AdminManagerLogical extends HttpServlet {
             System.out.println("size : ----->" + noauditlist.size());
 
         } else if (audit.equals("已审核")) {
+            
             System.out.println("----------------->111");
             state = 1;
             auditlistOriginal = data.getAuditInfo(state);
@@ -257,7 +261,7 @@ public class AdminManagerLogical extends HttpServlet {
             auditlist = new judgeTime().adjustTime(adTime, auditlist);
 
         }
-
+        request.setAttribute("audit", audit);
         request.setAttribute("noauditlist", noauditlist);
         request.setAttribute("auditlist", auditlist);
         request.getRequestDispatcher("adminManager.jsp").forward(request,
@@ -348,7 +352,7 @@ public class AdminManagerLogical extends HttpServlet {
         int adId = Integer.parseInt(request.getParameter("adId"));
         data = new AdminLogic();
         System.out.println("adId=" + adId);
-        data.del_pic_ad(adId);
+        data.newDel_pic_ad(adId);
         int state = 1;
 
         List auditlist = data.getAuditInfo(state);
@@ -377,7 +381,26 @@ public class AdminManagerLogical extends HttpServlet {
         request.getRequestDispatcher("adminManager.jsp").forward(request,
                 response);
     }
+    public void delAuditBatchInfo(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
+        data = new AdminLogic();
+        response.setContentType("appliction/json;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        String jsonADCheckedID = request.getParameter("jsonADCheckedID");
+        List<Integer> AdList = new ArrayList<Integer>();
+        JSONArray jsonArray = JSONArray.fromObject(jsonADCheckedID);
+        for (int i = 0; i < jsonArray.size(); i++) {
+            AdList.add(i, Integer.parseInt((String) jsonArray.get(i)));
+            // System.out.println(" 广告ID" + (String) jsonArray.get(i));
+        }
+        data.newDelBatch_pic_ad(AdList);
+        int state = 1;
 
+        List auditlist = data.getAuditInfo(state);
+        request.setAttribute("auditlist", auditlist);
+        request.getRequestDispatcher("adminManager.jsp").forward(request,
+                response);
+    }
     // 注册新用户
 
     public void registerUser(HttpServletRequest request,

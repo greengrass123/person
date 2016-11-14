@@ -2,15 +2,15 @@
 
 @import url(http://fonts.googleapis.com/css?family=Lobster);
 body {margin:0; padding:0; background:#fff;  font-family:Tahoma;font-family:Arial, Hel,Microsoft YaHei;}
-#nav{ position:relative; margin:0 2.5% 20px 2.5%; background:#666666; padding:0; font-family:Tahoma;font-family:Arial, Hel,Microsoft YaHei; font-size:15px; -moz-border-radius:5px; -khtml-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; -moz-box-shadow:2px 2px 3px #ccc; -webkit-box-shadow:2px 2px 3px #ccc; box-shadow:2px 2px 3px #ccc; font-weight:bold;}
+#nav{ position:relative; margin:20px auto; width: 1300px; background:#666666; padding:0; font-family:Tahoma;font-family:Arial, Hel,Microsoft YaHei; font-size:15px; -moz-border-radius:5px; -khtml-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; -moz-box-shadow:2px 2px 3px #ccc; -webkit-box-shadow:2px 2px 3px #ccc; box-shadow:2px 2px 3px #ccc; font-weight:bold;}
 #nav .clear{clear:both;}
 #nav ul{padding:0 0 0 5px; margin:0; list-style:none;}
-#nav li{float:left; margin:5px 10px 5px 0; background:#666666; -moz-border-radius:5px; -khtml-border-radius:5px; -webkit-border-radius:5px; border-radius:5px;}
+#nav li{padding:0; float:left; margin:5px 10px 5px 0; background:#666666; -moz-border-radius:5px; -khtml-border-radius:5px; -webkit-border-radius:5px; border-radius:5px;}
 #nav li a{text-decoration:none; color:#FFAA8C; display:block; padding:10px 15px;}
 
- .nav-wrapper-fixed{ position:fixed; top:0; width:100%;}
- .nav-wrapper-fixed .nav{width:960px; margin:0 auto;}
- .nav-wrapper-fixed .nav li{ float:left; width:100px; margin-right:5px; background:#CCC; text-align:center; height:24px; line-height:24px; list-style:none;}
+ .nav-wrapper-fixed{ position:fixed; top:0; width:100%; z-index: 3;}
+ .nav-wrapper-fixed #nav{width:1300px; margin:0 auto;}
+ /*.nav-wrapper-fixed #nav li{ float:left; width:100px; margin-right:5px; background:#CCC; text-align:center; height:24px; line-height:24px; list-style:none;}*/
  
  a{text-decoration:none; color:#666666; font-size:14px; text-align:center;}
  a:hover{color:#FF9900;}

@@ -12,25 +12,30 @@ public class PrivateAd {
 	private String remark;
 	private int height;
 	private int width;
-	public PrivateAd() {
+	private int exist;
+	private int click;
+	public PrivateAd(int adId, int adTypeId, String upLoadTime, int userId,
+            int postId, String firstPicAddr, int money, long sortValue,
+            String remark, int height, int width, int exist, int click) {
+        super();
+        this.adId = adId;
+        this.adTypeId = adTypeId;
+        this.upLoadTime = upLoadTime;
+        this.userId = userId;
+        this.postId = postId;
+        this.firstPicAddr = firstPicAddr;
+        this.money = money;
+        this.sortValue = sortValue;
+        this.remark = remark;
+        this.height = height;
+        this.width = width;
+        this.exist = exist;
+        this.click = click;
+    }
+    public PrivateAd() {
 		super();
 	}	
-	public PrivateAd(int adId, int adTypeId, String upLoadTime, int userId,
-			int postId, String firstPicAddr, int money, long sortValue,
-			  String remark, int height, int width) {
-		super();
-		this.adId = adId;
-		this.adTypeId = adTypeId;
-		this.upLoadTime = upLoadTime;
-		this.userId = userId;
-		this.postId = postId;
-		this.firstPicAddr = firstPicAddr;
-		this.money = money;
-		this.sortValue = sortValue;
-		this.remark = remark;
-		this.height = height;
-		this.width = width;
-	}
+	
 
 	public String getRemark() {
 		return remark;
@@ -104,5 +109,17 @@ public class PrivateAd {
 	public void setSortValue(long sortValue) {
 		this.sortValue = sortValue;
 	}
+    public int getExist() {
+        return exist;
+    }
+    public void setExist(int exist) {
+        this.exist = exist;
+    }
+    public int getClick() {
+        return click;
+    }
+    public void setClick(int click) {
+        this.click = click;
+    }
 	 
 }
